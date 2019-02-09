@@ -17,6 +17,11 @@ app.get('/controller', function(req,res) {
     res.sendFile(__dirname + '/public/controller.html');
 });
 
+//3d
+app.get('/', function(req, res) {
+    res.sendFile(__dirname + 'public/index.html');
+});
+
 //websocket stuff
 socketIO.on('connection', function(socket) {
     console.log(socket.id + ' has connected!');
