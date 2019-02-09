@@ -9,9 +9,9 @@ const LISTEN_PORT = 8080; //make sure greater than 3000. Some ports are reserved
 app.use((express.static(__dirname + '/public'))); //set root dir to the public folder
 
 //3d
-//app.get('/index', function(req, res) {
-  //  res.sendFile(__dirname + '/public/index.html');
-//});
+app.get('/pop', function(req, res) {
+    res.sendFile(__dirname + '/public/pop.html');
+});
 
 //routes
 app.get('/color', function(req,res) {
