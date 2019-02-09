@@ -15,6 +15,7 @@
                 console.log("connected!");
             });
 
+            //takes in a change
             socket.on('color_change', function(data) {
                 //create rgb color string for css
                 let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';

@@ -12,36 +12,6 @@
     </head>
     <body>
         
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            let socket = io();
-
-            //default connect event
-            socket.on('connect', function() {
-                console.log("connected!");
-            });
-
-            //let's send some events to the server to pass on. Programmatic telephone game!
-            //querySelector() is a more modern and versatile function of getElementById()
-            //#name or class
-            //.name for classes
-            //etc.
-            //https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector 
-            //note that querySelector can also be used on elements so that you only search for their children
-            //instead of all elements within teh "document"
-            document.querySelector('#red').addEventListener('click', function() {
-                socket.emit('red');
-            });
-
-            document.querySelector('#green').addEventListener('click', function() {
-                socket.emit('green');
-            });
-
-            document.querySelector('#blue').addEventListener('click', function() {
-                socket.emit('blue');
-            });
-        </script>
-        
         <!-- main scene and we added shadows .. -->
         <a-scene shadow="type:basic;">
                 <a-assets timeout="3000">
@@ -94,5 +64,39 @@
                     geometry="primitive:sphere; radius:500;"
                     material="shader:flat; src:#skymap; side:back; height:2048; width:2048"></a-entity>
         </a-scene>
+
+
+        <!-- connection script-->
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            let socket = io();
+
+            //default connect event
+            socket.on('connect', function() {
+                console.log("connected!");
+            });
+
+            //let's send some events to the server to pass on. Programmatic telephone game!
+            //querySelector() is a more modern and versatile function of getElementById()
+            //#name or class
+            //.name for classes
+            //etc.
+            //https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector 
+            //note that querySelector can also be used on elements so that you only search for their children
+            //instead of all elements within teh "document"
+            document.querySelector('#red').addEventListener('click', function() {
+                socket.emit('red');
+            });
+
+            document.querySelector('#green').addEventListener('click', function() {
+                socket.emit('green');
+            });
+
+            document.querySelector('#blue').addEventListener('click', function() {
+                socket.emit('blue');
+            });
+        </script>
+
+        
     </body>
 </html>
