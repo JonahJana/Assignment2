@@ -22,8 +22,6 @@ app.get('/controller', function(req,res) {
     res.sendFile(__dirname + '/public/controller.html');
 });
 
-
-
 //websocket stuff
 socketIO.on('connection', function(socket) {
     console.log(socket.id + ' has connected!');

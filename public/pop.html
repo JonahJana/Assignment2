@@ -29,6 +29,7 @@
                     <!-- sounds from "SuperSays" project : https://github.com/supermedium/supersays/tree/master/src/assets -->
                     <a-asset-item crossorigin="anonymous" id="create-sound" src="/assets/sound/0.ogg" response-type="arraybuffer"></a-asset-item>
                     <a-asset-item crossorigin="anonymous" id="delete-sound" src="/assets/sound/1.ogg" response-type="arraybuffer"></a-asset-item>
+                    <a-asset-item crossorigin="anonymous" id="fear-sound" src="/assets/sound/Death_Impact_Yell_Single.mp3" response-type="arraybuffer"></a-asset-item>
 
                     <!-- this is the recommended method to preload sound though the above method seems to work consistently -->
                     <!-- <audio id="create-sound" crossorigin="anonymous" src="/assets/sound/0.ogg" ></audio> -->
@@ -50,6 +51,7 @@
                 <!-- sound entities we will query and play in components -->
                 <a-entity id="createSound" sound="src:#create-sound"></a-entity>
                 <a-entity id="deleteSound" sound="src:#delete-sound"></a-entity>
+                <a-entity id="fearSound" sound="src:#fear-sound"></a-entity>
             
                 <!-- default lighting added in manually -->
                 <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.5 1 1"></a-entity>
@@ -78,24 +80,19 @@
                 console.log("gggggggggggggggggggggggggg!");
             });
 
-            //let's send some events to the server to pass on. Programmatic telephone game!
-            //querySelector() is a more modern and versatile function of getElementById()
-            //#name or class
-            //.name for classes
-            //etc.
-            //https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector 
-            //note that querySelector can also be used on elements so that you only search for their children
-            //instead of all elements within teh "document"
-            document.querySelector('#red').addEventListener('click', function() {
-                socket.emit('red');
-            });
+            
 
-            document.querySelector('#green').addEventListener('click', function() {
-                socket.emit('green');
-            });
-
-            document.querySelector('#blue').addEventListener('click', function() {
-                socket.emit('blue');
+            //takes in a change
+            socket.on('color_change', function(data) {
+                var audio = new Audio('/assets/sound/Death_Impact_Yell_Single.mp3');
+                audio.play();
+                //create rgb color string for css
+                //let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
+                console.log("reeeeeeeeeeeeeeeeee");
+                //this.soundElem.components['#fearSound'].stopSound(); //stop first so we aren't trying to play more than once at same time
+                //this.soundElem.components['#fearSound'].playSound();
+                //set background color with received color
+                //document.body.style.backgroundColor = colorStr;
             });
         </script>
 
