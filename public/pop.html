@@ -11,7 +11,10 @@
         <script src="/js/remove-component.js"></script>
     </head>
     <body>
-        
+        <!-- connection script-->
+        <script src="/socket.io/socket.io.js"></script>
+
+
         <!-- main scene and we added shadows .. -->
         <a-scene shadow="type:basic;">
                 <a-assets timeout="3000">
@@ -37,7 +40,7 @@
                 <a-entity position="0 2 0 " camera look-controls wasd-controls>
                     <!-- if you add rayOrigin:mouse to teh cursor properties selection happens where you click -->
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;" -->
-                    <a-entity   cursor="fuse:true; fuseTimeout:500;"
+                    <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;"
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
                                 material="shader:flat; color:black;" >
@@ -66,14 +69,13 @@
         </a-scene>
 
 
-        <!-- connection script-->
-        <script src="/socket.io/socket.io.js"></script>
+        <!-- stuff -->
         <script>
             let socket = io();
 
             //default connect event
             socket.on('connect', function() {
-                console.log("connected!");
+                console.log("gggggggggggggggggggggggggg!");
             });
 
             //let's send some events to the server to pass on. Programmatic telephone game!

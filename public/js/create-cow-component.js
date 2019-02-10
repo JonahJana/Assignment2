@@ -12,7 +12,13 @@ AFRAME.registerComponent('create-cow-component', {
             Context_AF.soundElem.components['sound'].stopSound(); //stop first so we aren't trying to play more than once at same time
             Context_AF.soundElem.components['sound'].playSound();
 
-            console.log("created a cow" + Context_AF.soundElem);
+            let planeColour = document.querySelector("#plane");
+            planeColour.setAttribute('material', {src:'/assets/textures/red.png'});
+            
+            let scene = document.querySelector('a-scene');
+            scene.appendChild(planeColour);
+
+            console.log("created a cow" + cowElem);
         });
     },
     createCow : function() {
