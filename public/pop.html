@@ -57,9 +57,9 @@
                 <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.5 1 1"></a-entity>
                 <a-entity light="type: ambient; intensity: 1.0; color:#bbb;"></a-entity>
             
-                <!-- our helmet model from : https://github.com/KhronosGroup/glTF-Sample-Models -->
+                <!-- our helmet model from : https://github.com/KhronosGroup/glTF-Sample-Models / https://free3d.com/3d-model/spider-animated-low-poly-and-game-ready-87147.html-->
                 <a-gltf-model create-cow-component src="#Helmet-gltf" position="-2 0.6 -4" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
-                    
+                
                 <!-- plane so we can see shadows -->
                 <a-entity id="plane" geometry="primitive:plane; width:4; height:4;" position="0 0 -4" rotation="-90 0 0" 
                     shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity>
