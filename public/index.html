@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Hello, WebVR! - A-Frame</title>
-        <meta name="description" content="Hello, WebVR! - A-Frame">
+        <title>Interactable Screen</title>
         <script src="/js/aframe.min.js"></script>
         <script src="/js/spherical-env-map.js"></script>
 
         <!-- lets load in our components -->
-        <script src="/js/create-cow-component.js"></script>
+        <script src="/js/create-component.js"></script>
         <script src="/js/remove-component.js"></script>
     </head>
     <body>
@@ -21,9 +20,9 @@
 
                     <!-- all assets that can be cached by browser -->
                     <img crossorigin="anonymous" id="skymap" src="/assets/textures/CloudySky.jpg">
-                    <img crossorigin="anonymous" id="cowmap" src="/assets/textures/Cow.png">
                     <img crossorigin="anonymous" id="redmap" src="/assets/textures/red.png">
-                    
+                    <img crossorigin="anonymous" id="redmap" src="/assets/textures/green.png">
+                    <img crossorigin="anonymous" id="redmap" src="/assets/textures/blue.png">                  
 
                     <!-- sounds from https://www.youtube.com/audiolibrary -->
                     <a-asset-item crossorigin="anonymous" id="create-sound" src="/assets/sound/0.ogg" response-type="arraybuffer"></a-asset-item>
@@ -33,16 +32,11 @@
                     <a-asset-item crossorigin="anonymous" id="mask-sound" src="/assets/sound/Cartoon_Boing.mp3" response-type="arraybuffer"></a-asset-item>
                     <a-asset-item crossorigin="anonymous" id="old-sound" src="/assets/sound/Wood_Bat_Falling_in_Dirt.mp3" response-type="arraybuffer"></a-asset-item>
 
-                    <!-- this is the recommended method to preload sound though the above method seems to work consistently -->
-                    <!-- <audio id="create-sound" crossorigin="anonymous" src="/assets/sound/0.ogg" ></audio> -->
-                    <!-- <audio id="delete-sound" crossorigin="anonymous" src="/assets/sound/1.ogg" ></audio> -->
                 </a-assets>
 
                 <!-- traditional method of creating a camera and cursor component for selection. select with reticle. -->
                 <!-- Also added in controls for desktop mouse/kb -->
-                <a-entity position="0 2 20 " camera look-controls wasd-controls>
-                    <!-- if you add rayOrigin:mouse to teh cursor properties selection happens where you click -->
-                    <!-- <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;" -->
+                <a-entity position="0 2 2 " camera look-controls wasd-controls>
                     <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;"
                                 position="0 0 -1"
                                 geometry="primitive:ring; radiusInner:0.02; radiusOuter:0.03;"
@@ -53,26 +47,14 @@
                 <!-- sound entities we will query and play in components -->
                 <a-entity id="createSound" sound="src:#create-sound"></a-entity>
                 <a-entity id="deleteSound" sound="src:#delete-sound"></a-entity>
-                
-                <a-entity id="redSound" sound="src:#red-sound"></a-entity>
-                <a-entity id="maskSound" sound="src:#mask-sound"></a-entity>
-                <a-entity id="oldSound" sound="src:#old-sound"></a-entity>
             
                 <!-- default lighting added in manually -->
                 <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.5 1 1"></a-entity>
                 <a-entity light="type: ambient; intensity: 1.0; color:#bbb;"></a-entity>
             
-                <!-- our helmet model from : https://github.com/KhronosGroup/glTF-Sample-Models / https://free3d.com/3d-model/spider-animated-low-poly-and-game-ready-87147.html-->
-                <!-- <a-gltf-model create-cow-component src="#Helmet-gltf" position="-2 0.6 -4" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
-                -->
-                <a-entity create-cow-component id="sphere" geometry="primitive:sphere; radius: 1;" position="0 0 -4" rotation="0 0 0" 
+                <a-entity create-component id="sphere" geometry="primitive:sphere; radius: 1;" position="0 0 -4" rotation="0 0 0" 
                     shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity> 
                 
-                <!-- plane so we can see shadows -->
-                <!--
-                <a-entity id="plane" geometry="primitive:plane; width:4; height:4;" position="0 0 -4" rotation="-90 0 0" 
-                    shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity>
-                -->
                 <!-- manual method of creating "sky sphere" -->
                 <a-entity id="sky"
                     geometry="primitive:sphere; radius:500;"
@@ -86,18 +68,31 @@
 
             //default connect event
             socket.on('connect', function() {
-                console.log("gggggggggggggggggggggggggg!");
+                console.log("connected!");
             });
 
             
 
             //takes in a change
             socket.on('color_change', function(data) {
-                console.log("d!");
                 console.log(data.r);
-                console.log("e!");
-                var audio = new Audio('/assets/sound/Death_Impact_Yell_Single.mp3');
-                audio.play();
+                console.log(data.g);
+                console.log(data.b);
+
+                
+                if (data.r == 255){
+                    var red = new Audio('/assets/sound/Death_Impact_Yell_Single.mp3');
+                    red.play();
+                }
+                if (data.g == 255){
+                    var green = new Audio('/assets/sound/Cartoon_Boing.mp3');
+                    green.play();
+                }
+                if (data.b == 255){
+                    var blue = new Audio('/assets/sound/Wood_Bat_Falling_in_Dirt.mp3');
+                    blue.play();
+                }
+                
             });
         </script>
 
