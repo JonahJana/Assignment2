@@ -25,13 +25,32 @@ AFRAME.registerComponent('create-cow-component', {
         //consider "pooling" elements (i.e. not creating/deleting a bunch but just hiding/showing a certain MAX amount with visibility="true" or "false" )
         //see here: https://www.html5rocks.com/en/tutorials/speed/static-mem-pools/ 
         //see here: https://aframe.io/docs/0.8.0/components/pool.html
-        let cowElem = document.createElement('a-entity');
-        cowElem.setAttribute('obj-model', {obj:'/assets/models/bigJaw.obj'});
-        cowElem.setAttribute('material', {src:'/assets/textures/red.png'});
-        cowElem.setAttribute('remove-component', {}); 
-        cowElem.setAttribute('position', {x:2, y:2, z:-4});
+        //models found on https://www.turbosquid.com
+        //red face
+        let redFace = document.createElement('a-entity');
+        redFace.setAttribute('obj-model', {obj:'/assets/models/bigJaw.obj'});
+        redFace.setAttribute('material', {src:'/assets/textures/red.png'});
+        redFace.setAttribute('remove-component', {}); 
+        redFace.setAttribute('position', {x:2, y:2, z:-4});
         
+        /*
+        //the mask
+        let Mask = document.createElement('a-entity');
+        Mask.setAttribute('obj-model', {obj:'/assets/models/Mask_head.obj'});
+        Mask.setAttribute('material', {src:'/assets/textures/Mask_head_b.png'});
+        Mask.setAttribute('remove-component', {}); 
+        Mask.setAttribute('position', {x:2, y:2, z:-4});
+
+        //old man
+        let Man = document.createElement('a-entity');
+        Man.setAttribute('obj-model', {obj:'/assets/models/Old_Man.obj'});
+        Man.setAttribute('material', {src:'/assets/textures/Cow.png'});
+        Man.setAttribute('remove-component', {}); 
+        Man.setAttribute('position', {x:2, y:2, z:-4});
+         */
         let scene = document.querySelector('a-scene');
-        scene.appendChild(cowElem);
+        scene.appendChild(redFace);
+        //scene.appendChild(Mask);
+        //scene.appendChild(Man);
     },
 });

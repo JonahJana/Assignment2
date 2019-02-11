@@ -25,10 +25,9 @@
                     <a-asset-item crossorigin="anonymous" id="Helmet-gltf" src="/assets/models/DamagedHelmet.glb">
                     <a-asset-item crossorigin="anonymous" id="Cow-obj" src="/assets/models/Cow.obj">
 
-                    <!-- use this method if you are having problems with sound playing -->
-                    <!-- sounds from "SuperSays" project : https://github.com/supermedium/supersays/tree/master/src/assets -->
-                    <a-asset-item crossorigin="anonymous" id="create-sound" src="/assets/sound/0.ogg" response-type="arraybuffer"></a-asset-item>
-                    <a-asset-item crossorigin="anonymous" id="delete-sound" src="/assets/sound/1.ogg" response-type="arraybuffer"></a-asset-item>
+                    <!-- sounds from https://www.youtube.com/audiolibrary -->
+                    <a-asset-item crossorigin="anonymous" id="create-sound" src="/assets/sound/Wood_Bat_Falling_in_Dirt" response-type="arraybuffer"></a-asset-item>
+                    <a-asset-item crossorigin="anonymous" id="delete-sound" src="/assets/sound/Cartoon_Boing.mp3" response-type="arraybuffer"></a-asset-item>
                     <a-asset-item crossorigin="anonymous" id="fear-sound" src="/assets/sound/Death_Impact_Yell_Single.mp3" response-type="arraybuffer"></a-asset-item>
 
                     <!-- this is the recommended method to preload sound though the above method seems to work consistently -->
@@ -58,12 +57,16 @@
                 <a-entity light="type: ambient; intensity: 1.0; color:#bbb;"></a-entity>
             
                 <!-- our helmet model from : https://github.com/KhronosGroup/glTF-Sample-Models / https://free3d.com/3d-model/spider-animated-low-poly-and-game-ready-87147.html-->
-                <a-gltf-model create-cow-component src="#Helmet-gltf" position="-2 0.6 -4" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
+                <!-- <a-gltf-model create-cow-component src="#Helmet-gltf" position="-2 0.6 -4" scale="1 1 1" shadow="cast:true; receive:true;" spherical-env-map="src:#skymap;"></a-gltf-model>
+                -->
+                <a-entity create-cow-component id="sphere" geometry="primitive:sphere; radius: 1;" position="0 0 -4" rotation="0 0 0" 
+                    shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity> 
                 
                 <!-- plane so we can see shadows -->
+                <!--
                 <a-entity id="plane" geometry="primitive:plane; width:4; height:4;" position="0 0 -4" rotation="-90 0 0" 
                     shadow="receive:true;" material="color:#7BC8A4; sphericalEnvMap:#skymap; roughness:0.5; metalness:0.0;"></a-entity>
-            
+                -->
                 <!-- manual method of creating "sky sphere" -->
                 <a-entity id="sky"
                     geometry="primitive:sphere; radius:500;"
