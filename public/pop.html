@@ -22,13 +22,16 @@
                     <!-- all assets that can be cached by browser -->
                     <img crossorigin="anonymous" id="skymap" src="/assets/textures/CloudySky.jpg">
                     <img crossorigin="anonymous" id="cowmap" src="/assets/textures/Cow.png">
-                    <a-asset-item crossorigin="anonymous" id="Helmet-gltf" src="/assets/models/DamagedHelmet.glb">
-                    <a-asset-item crossorigin="anonymous" id="Cow-obj" src="/assets/models/Cow.obj">
+                    <img crossorigin="anonymous" id="redmap" src="/assets/textures/red.png">
+                    
 
                     <!-- sounds from https://www.youtube.com/audiolibrary -->
-                    <a-asset-item crossorigin="anonymous" id="create-sound" src="/assets/sound/Wood_Bat_Falling_in_Dirt" response-type="arraybuffer"></a-asset-item>
-                    <a-asset-item crossorigin="anonymous" id="delete-sound" src="/assets/sound/Cartoon_Boing.mp3" response-type="arraybuffer"></a-asset-item>
-                    <a-asset-item crossorigin="anonymous" id="fear-sound" src="/assets/sound/Death_Impact_Yell_Single.mp3" response-type="arraybuffer"></a-asset-item>
+                    <a-asset-item crossorigin="anonymous" id="create-sound" src="/assets/sound/0.ogg" response-type="arraybuffer"></a-asset-item>
+                    <a-asset-item crossorigin="anonymous" id="delete-sound" src="/assets/sound/1.ogg" response-type="arraybuffer"></a-asset-item>
+                   
+                    <a-asset-item crossorigin="anonymous" id="red-sound" src="/assets/sound/Death_Impact_Yell_Single.mp3" response-type="arraybuffer"></a-asset-item>
+                    <a-asset-item crossorigin="anonymous" id="mask-sound" src="/assets/sound/Cartoon_Boing.mp3" response-type="arraybuffer"></a-asset-item>
+                    <a-asset-item crossorigin="anonymous" id="old-sound" src="/assets/sound/Wood_Bat_Falling_in_Dirt.mp3" response-type="arraybuffer"></a-asset-item>
 
                     <!-- this is the recommended method to preload sound though the above method seems to work consistently -->
                     <!-- <audio id="create-sound" crossorigin="anonymous" src="/assets/sound/0.ogg" ></audio> -->
@@ -37,7 +40,7 @@
 
                 <!-- traditional method of creating a camera and cursor component for selection. select with reticle. -->
                 <!-- Also added in controls for desktop mouse/kb -->
-                <a-entity position="0 2 0 " camera look-controls wasd-controls>
+                <a-entity position="0 2 20 " camera look-controls wasd-controls>
                     <!-- if you add rayOrigin:mouse to teh cursor properties selection happens where you click -->
                     <!-- <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;" -->
                     <a-entity   cursor="fuse:true; fuseTimeout:500; rayOrigin:mouse;"
@@ -50,7 +53,10 @@
                 <!-- sound entities we will query and play in components -->
                 <a-entity id="createSound" sound="src:#create-sound"></a-entity>
                 <a-entity id="deleteSound" sound="src:#delete-sound"></a-entity>
-                <a-entity id="fearSound" sound="src:#fear-sound"></a-entity>
+                
+                <a-entity id="redSound" sound="src:#red-sound"></a-entity>
+                <a-entity id="maskSound" sound="src:#mask-sound"></a-entity>
+                <a-entity id="oldSound" sound="src:#old-sound"></a-entity>
             
                 <!-- default lighting added in manually -->
                 <a-entity light="type:directional; castShadow:true; intensity:0.6; shadowBias:-0.000001; shadowMapWidth:1024; shadowMapHeight:1024;" position="-0.5 1 1"></a-entity>
@@ -87,15 +93,11 @@
 
             //takes in a change
             socket.on('color_change', function(data) {
+                console.log("d!");
+                console.log(data.r);
+                console.log("e!");
                 var audio = new Audio('/assets/sound/Death_Impact_Yell_Single.mp3');
                 audio.play();
-                //create rgb color string for css
-                //let colorStr = 'rgb(' + data.r + ',' + data.g + ',' + data.b + ')';
-                console.log("reeeeeeeeeeeeeeeeee");
-                //this.soundElem.components['#fearSound'].stopSound(); //stop first so we aren't trying to play more than once at same time
-                //this.soundElem.components['#fearSound'].playSound();
-                //set background color with received color
-                //document.body.style.backgroundColor = colorStr;
             });
         </script>
 

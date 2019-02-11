@@ -1,6 +1,7 @@
 AFRAME.registerComponent('create-cow-component', {
     schema: {},
     init : function() {
+        console.log("9!");
         const Context_AF = this;
         Context_AF.soundElem = document.querySelector('#createSound');
 
@@ -26,6 +27,9 @@ AFRAME.registerComponent('create-cow-component', {
         //see here: https://www.html5rocks.com/en/tutorials/speed/static-mem-pools/ 
         //see here: https://aframe.io/docs/0.8.0/components/pool.html
         //models found on https://www.turbosquid.com
+        
+        console.log("r!");
+
         //red face
         let redFace = document.createElement('a-entity');
         redFace.setAttribute('obj-model', {obj:'/assets/models/bigJaw.obj'});
@@ -33,24 +37,24 @@ AFRAME.registerComponent('create-cow-component', {
         redFace.setAttribute('remove-component', {}); 
         redFace.setAttribute('position', {x:2, y:2, z:-4});
         
-        /*
+        
         //the mask
         let Mask = document.createElement('a-entity');
-        Mask.setAttribute('obj-model', {obj:'/assets/models/Mask_head.obj'});
-        Mask.setAttribute('material', {src:'/assets/textures/Mask_head_b.png'});
+        Mask.setAttribute('obj-model', {obj:'/assets/models/bigJaw.obj'});
+        Mask.setAttribute('material', {src:'/assets/textures/blue.png'});
         Mask.setAttribute('remove-component', {}); 
-        Mask.setAttribute('position', {x:2, y:2, z:-4});
+        Mask.setAttribute('position', {x:0, y:-180, z:-20});
 
         //old man
         let Man = document.createElement('a-entity');
-        Man.setAttribute('obj-model', {obj:'/assets/models/Old_Man.obj'});
-        Man.setAttribute('material', {src:'/assets/textures/Cow.png'});
+        Man.setAttribute('obj-model', {obj:'/assets/models/bigJaw.obj'});
+        Man.setAttribute('material', {src:'/assets/textures/green.png'});
         Man.setAttribute('remove-component', {}); 
-        Man.setAttribute('position', {x:2, y:2, z:-4});
-         */
+        Man.setAttribute('position', {x:-2, y:2, z:-4});
+         
         let scene = document.querySelector('a-scene');
         scene.appendChild(redFace);
-        //scene.appendChild(Mask);
-        //scene.appendChild(Man);
+        scene.appendChild(Mask);
+        scene.appendChild(Man);
     },
 });
